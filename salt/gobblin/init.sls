@@ -1,7 +1,8 @@
 {% set flavor_cfg = pillar['pnda_flavor']['states'][sls] %}
 
 {% set packages_server = pillar['packages_server']['base_uri'] %}
-{% set gobblin_version = pillar['gobblin']['release_version'] %}
+#{% set gobblin_version = pillar['gobblin']['release_version'] %}
+{% set gobblin_version = '0.11.0' %}
 {% set gobblin_package = 'gobblin-distribution-' + gobblin_version + '.tar.gz' %}
 
 {% set pnda_home = pillar['pnda']['homedir'] %}
