@@ -74,6 +74,7 @@ hdp-copy_flavor_config:
       aws_secret_key: {{ aws_secret_key }}
       data_volumes: {{ data_volumes }}
       pnda_graphite_host: {{ pnda_graphite_host }}
+      pnda_graphite_port: {{ pnda_graphite_port }}
 
 hdp-execute_hdp_installation_script:
   cmd.run:

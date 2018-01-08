@@ -76,6 +76,7 @@ cdh-copy_cm_config:
       app_packages_dir: {{ app_packages_dir }}
       data_volumes: {{ data_volumes }}
       pnda_graphite_host: {{ pnda_graphite_host }}
+      pnda_graphite_port: {{ pnda_graphite_port }}
 
 # Create a python configured scripts to call the cm_setup.setup_hadoop function with
 # the needed aguments (nodes to install cloudera to)
