@@ -33,6 +33,7 @@
 # Graphite host and default port
 {% set graphite_host = salt['pnda.get_hosts_for_role']('graphite')[0] %}
 {% set graphite_default_port = '2003' %}
+{% set execs = [ 'flink', 'pyflink.sh', 'start-scala-shell.sh', 'yarn-session.sh' ] %}
 
 flink-create_flink_version_directory:
   file.directory:
@@ -134,4 +135,19 @@ flink-copy_dependency_jar-{{ filename }}:
   file.managed:
     - name: {{ flink_real_dir }}/lib/{{ filename }}
     - source: {{ file }}
+{% endfor %}
+
+{% for exec in execs %}
+flink_symlink_{{ exec }}:
+  file.symlink:
+    - name: /usr/bin/{{ exec }}
+    - target: {{ flink_real_dir }}/bin/{{ exec }}
+    - mode: 755
+
+flink_alt_{{ exec }}:
+  alternatives.install:
+    - name: {{ exec }}
+    - link: /usr/bin/{{ exec }}
+    - path: {{ flink_real_dir }}/bin/{{ exec }}
+    - priority: 10
 {% endfor %}
